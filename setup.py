@@ -17,7 +17,7 @@ if newer('./src/getdate.y', './src/getdate.c'):
     execute(spawn, (['bison', '-y', '-o', './src/getdate.c', './src/getdate.y'],))
 
 setup(name='python-kadmin',
-      version='0.1.1',
+      version='0.1.1+twtr',
       description='Python module for kerberos admin (kadm5)',
       url='https://github.com/russjancewicz/python-kadmin',
       download_url='https://github.com/russjancewicz/python-kadmin/tarball/v0.1.1',
