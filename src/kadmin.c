@@ -225,7 +225,15 @@ static PyKAdminObject *_kadmin_local(PyObject *self, PyObject *args) {
         PyKAdminError_raise_error(retval, "kadm5_init_with_password.local");
 
     }
-    
+
+    retval = kadm5_init_iprop(kadmin->server_handle, 0);
+    if (retval) {
+        Py_XDECREF(kadmin);
+        kadmin = NULL;
+
+        PyKAdminError_raise_error(retval, "kadm5_init_iprop");
+    }
+
     if (client_name)
         free(client_name);
 
