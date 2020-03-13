@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from distutils.core import setup, Extension
+try:
+  from setuptools import setup, Extension
+except ImportError:
+  from distutils.core import setup, Extension
 from distutils.util import execute, newer
 from distutils.spawn import spawn
 
@@ -17,13 +20,14 @@ if newer('./src/getdate.y', './src/getdate.c'):
     execute(spawn, (['bison', '-y', '-o', './src/getdate.c', './src/getdate.y'],))
 
 setup(name='python-kadmin',
-      version='0.1.1+twtr',
+      version='0.1.2+twtr',
       description='Python module for kerberos admin (kadm5)',
       url='https://github.com/russjancewicz/python-kadmin',
       download_url='https://github.com/russjancewicz/python-kadmin/tarball/v0.1.1',
       author='Russell Jancewicz',
       author_email='russell.jancewicz@gmail.com',
       license='MIT',
+      setup_requires=['wheel'],
       ext_modules=[
           Extension(
               "kadmin",
